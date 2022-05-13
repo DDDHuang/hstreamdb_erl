@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module hstreamdb_erlang_producer</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module hstreamdb_erlang_producer</h1>
+<ul class="index"><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+
+<p><b>Behaviours:</b> <a href="gen_server.html"><tt>gen_server</tt></a>.</p>
+
+<h2><a name="types">Data Types</a></h2>
+
+<h3 class="typedecl"><a name="type-batch_setting">batch_setting()</a></h3>
+<p><tt>batch_setting() = #{record_count_limit =&gt; integer(), bytes_limit =&gt; integer(), age_limit =&gt; integer()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-batch_status">batch_status()</a></h3>
+<p><tt>batch_status() = #{record_count =&gt; integer(), bytes =&gt; integer()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-payload_type">payload_type()</a></h3>
+<p><tt>payload_type() = json | raw</tt></p>
+
+
+<h3 class="typedecl"><a name="type-producer_option">producer_option()</a></h3>
+<p><tt>producer_option() = #{server_url =&gt; string(), stream_name =&gt; string(), batch_setting =&gt; <a href="#type-batch_setting">batch_setting()</a>, return_pid =&gt; pid(), append_worker_num =&gt; integer()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-producer_resource">producer_resource()</a></h3>
+<p><tt>producer_resource() = #{age_limit_worker =&gt; pid(), append_worker_pool =&gt; atom()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-producer_state">producer_state()</a></h3>
+<p><tt>producer_state() = #{producer_status =&gt; <a href="#type-producer_status">producer_status()</a>, producer_option =&gt; <a href="#type-producer_option">producer_option()</a>, producer_resource =&gt; <a href="#type-producer_resource">producer_resource()</a>}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-producer_status">producer_status()</a></h3>
+<p><tt>producer_status() = #{records =&gt; map(), batch_status =&gt; <a href="#type-batch_status">batch_status()</a>}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-record">record()</a></h3>
+<p><tt>record() = {<a href="#type-payload_type">payload_type()</a>, binary(), string()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-start_args">start_args()</a></h3>
+<p><tt>start_args() = #{producer_option =&gt; <a href="#type-producer_option">producer_option()</a>}</tt></p>
+
+
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#append-2">append/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_batch_setting-1">build_batch_setting/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_batch_setting-3">build_batch_setting/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_producer_option-5">build_producer_option/5</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_record-1">build_record/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_record-2">build_record/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_record-3">build_record/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#build_start_args-1">build_start_args/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#flush-1">flush/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_call-3">handle_call/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_cast-2">handle_cast/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_info-2">handle_info/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#init-1">init/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#start-1">start/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#start_link-1">start_link/1</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="append-2">append/2</a></h3>
+<div class="spec">
+<p><tt>append(Producer::<a href="http://www.erlang.org/edoc/doc/stdlib/doc/gen_server.html#type-server_ref">gen_server:server_ref()</a>, Record::<a href="#type-record">record()</a>) -&gt; ok</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_batch_setting-1">build_batch_setting/1</a></h3>
+<div class="spec">
+<p><tt>build_batch_setting(BatchSetting) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_batch_setting-3">build_batch_setting/3</a></h3>
+<div class="spec">
+<p><tt>build_batch_setting(RecordCountLimit::integer(), BytesLimit::integer(), AgeLimit::integer()) -&gt; <a href="#type-batch_setting">batch_setting()</a></tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_producer_option-5">build_producer_option/5</a></h3>
+<div class="spec">
+<p><tt>build_producer_option(ServerUrl::string(), StreamName::string(), ReturnPid::pid(), AppendWorkerNum::integer(), BatchSetting::<a href="#type-batch_setting">batch_setting()</a>) -&gt; <a href="#type-producer_option">producer_option()</a></tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_record-1">build_record/1</a></h3>
+<div class="spec">
+<p><tt>build_record(Payload) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_record-2">build_record/2</a></h3>
+<div class="spec">
+<p><tt>build_record(PayloadType, Payload) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_record-3">build_record/3</a></h3>
+<div class="spec">
+<p><tt>build_record(PayloadType, Payload, OrderingKey) -&gt; Record</tt>
+<ul class="definitions"><li><tt>PayloadType = <a href="#type-payload_type">payload_type()</a></tt></li><li><tt>Payload = binary()</tt></li><li><tt>OrderingKey = string()</tt></li><li><tt>Record = <a href="#type-record">record()</a></tt></li></ul></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="build_start_args-1">build_start_args/1</a></h3>
+<div class="spec">
+<p><tt>build_start_args(ProducerOption::<a href="#type-producer_option">producer_option()</a>) -&gt; <a href="#type-start_args">start_args()</a></tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="flush-1">flush/1</a></h3>
+<div class="spec">
+<p><tt>flush(Producer::<a href="http://www.erlang.org/edoc/doc/stdlib/doc/gen_server.html#type-server_ref">gen_server:server_ref()</a>) -&gt; ok</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="handle_call-3">handle_call/3</a></h3>
+<div class="spec">
+<p><tt>handle_call(Request, From, State) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="handle_cast-2">handle_cast/2</a></h3>
+<div class="spec">
+<p><tt>handle_cast(X1, X2) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="handle_info-2">handle_info/2</a></h3>
+<div class="spec">
+<p><tt>handle_info(Info, State) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="init-1">init/1</a></h3>
+<div class="spec">
+<p><tt>init(Args::<a href="#type-start_args">start_args()</a>) -&gt; {ok, <a href="#type-producer_state">producer_state()</a>}</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="start-1">start/1</a></h3>
+<div class="spec">
+<p><tt>start(Args) -&gt; any()</tt></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="start_link-1">start_link/1</a></h3>
+<div class="spec">
+<p><tt>start_link(Args) -&gt; any()</tt></p>
+<p> </p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc</i></p>
+</body>
+</html>

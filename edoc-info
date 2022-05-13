@@ -1,0 +1,6 @@
+%% encoding: UTF-8
+{application,hstreamdb_erlang}.
+{modules,[hstream_server_h_stream_api_bhvr,hstream_server_h_stream_api_client,
+          hstreamdb_erlang,hstreamdb_erlang_append_worker,
+          hstreamdb_erlang_consumer,hstreamdb_erlang_example,
+          hstreamdb_erlang_producer,hstreamdb_erlang_utils]}.
