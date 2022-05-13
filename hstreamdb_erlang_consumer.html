@@ -10,7 +10,25 @@
 <hr>
 
 <h1>Module hstreamdb_erlang_consumer</h1>
-<ul class="index"><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+<ul class="index"><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+
+
+<h2><a name="types">Data Types</a></h2>
+
+<h3 class="typedecl"><a name="type-consumer_fun">consumer_fun()</a></h3>
+<p><tt>consumer_fun() = fun((<a href="#type-responder">responder()</a>, <a href="#type-received_record">received_record()</a>) -&gt; any())</tt></p>
+
+
+<h3 class="typedecl"><a name="type-received_record">received_record()</a></h3>
+<p><tt>received_record() = #{recordId =&gt; <a href="#type-record_id">record_id()</a>, record =&gt; binary()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-record_id">record_id()</a></h3>
+<p><tt>record_id() = map()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-responder">responder()</a></h3>
+<p><tt>responder() = {<a href="http://www.erlang.org/edoc/doc/grpc/doc/grpc_client.html#type-grpcstream">grpc_client:grpcstream()</a>, function()}</tt></p>
 
 
 <h2><a name="index">Function Index</a></h2>
@@ -24,25 +42,26 @@
 
 <h3 class="function"><a name="ack-2">ack/2</a></h3>
 <div class="spec">
-<p><tt>ack(Stream, AckId) -&gt; any()</tt></p>
+<p><tt>ack(Responder, AckIds) -&gt; ok</tt>
+<ul class="definitions"><li><tt>Responder = <a href="#type-responder">responder()</a></tt></li><li><tt>AckIds = <a href="#type-record_id">record_id()</a> | [<a href="#type-record_id">record_id()</a>]</tt></li></ul></p>
 <p> </p>
 </div>
 
 <h3 class="function"><a name="get_record-1">get_record/1</a></h3>
 <div class="spec">
-<p><tt>get_record(ReceivedRecord) -&gt; any()</tt></p>
+<p><tt>get_record(ReceivedRecord::<a href="#type-received_record">received_record()</a>) -&gt; binary()</tt><br></p>
 <p> </p>
 </div>
 
 <h3 class="function"><a name="get_record_id-1">get_record_id/1</a></h3>
 <div class="spec">
-<p><tt>get_record_id(ReceivedRecord) -&gt; any()</tt></p>
+<p><tt>get_record_id(ReceivedRecord::<a href="#type-received_record">received_record()</a>) -&gt; <a href="#type-record_id">record_id()</a></tt><br></p>
 <p> </p>
 </div>
 
 <h3 class="function"><a name="start-4">start/4</a></h3>
 <div class="spec">
-<p><tt>start(ServerUrl, SubscriptionId, ConsumerName, ConsumerFun) -&gt; any()</tt></p>
+<p><tt>start(ServerUrl::string(), SubscriptionId::string(), ConsumerName::string(), ConsumerFun::<a href="#type-consumer_fun">consumer_fun()</a>) -&gt; any()</tt><br></p>
 <p> </p>
 </div>
 <hr>

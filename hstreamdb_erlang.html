@@ -23,12 +23,18 @@
 <p><tt>delete_stream_opts() = map()</tt></p>
 
 
+<h3 class="typedecl"><a name="type-delete_subscription_opts">delete_subscription_opts()</a></h3>
+<p><tt>delete_subscription_opts() = map()</tt></p>
+
+
 <h2><a name="index">Function Index</a></h2>
 <table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#create_stream-4">create_stream/4</a></td><td></td></tr>
 <tr><td valign="top"><a href="#create_subscription-3">create_subscription/3</a></td><td></td></tr>
 <tr><td valign="top"><a href="#create_subscription-5">create_subscription/5</a></td><td></td></tr>
 <tr><td valign="top"><a href="#delete_stream-2">delete_stream/2</a></td><td></td></tr>
 <tr><td valign="top"><a href="#delete_stream-3">delete_stream/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#delete_subscription-2">delete_subscription/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#delete_subscription-3">delete_subscription/3</a></td><td></td></tr>
 <tr><td valign="top"><a href="#list_streams-1">list_streams/1</a></td><td></td></tr>
 <tr><td valign="top"><a href="#list_subscriptions-1">list_subscriptions/1</a></td><td></td></tr>
 <tr><td valign="top"><a href="#lookup_stream-3">lookup_stream/3</a></td><td></td></tr>
@@ -70,6 +76,18 @@
 <h3 class="function"><a name="delete_stream-3">delete_stream/3</a></h3>
 <div class="spec">
 <p><tt>delete_stream(Channel::<a href="#type-channel">channel()</a>, StreamName::string(), Opts::<a href="#type-delete_stream_opts">delete_stream_opts()</a>) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="delete_subscription-2">delete_subscription/2</a></h3>
+<div class="spec">
+<p><tt>delete_subscription(Channel::<a href="#type-channel">channel()</a>, SubscriptionId::string()) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p> </p>
+</div>
+
+<h3 class="function"><a name="delete_subscription-3">delete_subscription/3</a></h3>
+<div class="spec">
+<p><tt>delete_subscription(Channel::<a href="#type-channel">channel()</a>, SubscriptionId::string(), Opts::<a href="#type-delete_subscription_opts">delete_subscription_opts()</a>) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
 </div>
 
