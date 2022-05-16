@@ -15,10 +15,6 @@
 
 <h2><a name="types">Data Types</a></h2>
 
-<h3 class="typedecl"><a name="type-channel">channel()</a></h3>
-<p><tt>channel() = string()</tt></p>
-
-
 <h3 class="typedecl"><a name="type-delete_stream_opts">delete_stream_opts()</a></h3>
 <p><tt>delete_stream_opts() = map()</tt></p>
 
@@ -27,21 +23,25 @@
 <p><tt>delete_subscription_opts() = map()</tt></p>
 
 
+<h3 class="typedecl"><a name="type-hstreamdb_channel">hstreamdb_channel()</a></h3>
+<p><tt>hstreamdb_channel() = string()</tt></p>
+
+
 <h2><a name="index">Function Index</a></h2>
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#create_stream-4">create_stream/4</a></td><td></td></tr>
-<tr><td valign="top"><a href="#create_subscription-3">create_subscription/3</a></td><td></td></tr>
-<tr><td valign="top"><a href="#create_subscription-5">create_subscription/5</a></td><td></td></tr>
-<tr><td valign="top"><a href="#delete_stream-2">delete_stream/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#delete_stream-3">delete_stream/3</a></td><td></td></tr>
-<tr><td valign="top"><a href="#delete_subscription-2">delete_subscription/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#delete_subscription-3">delete_subscription/3</a></td><td></td></tr>
-<tr><td valign="top"><a href="#list_streams-1">list_streams/1</a></td><td></td></tr>
-<tr><td valign="top"><a href="#list_subscriptions-1">list_subscriptions/1</a></td><td></td></tr>
-<tr><td valign="top"><a href="#server_node_to_host_port-1">server_node_to_host_port/1</a></td><td></td></tr>
-<tr><td valign="top"><a href="#server_node_to_host_port-2">server_node_to_host_port/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#start_client_channel-1">start_client_channel/1</a></td><td></td></tr>
-<tr><td valign="top"><a href="#start_client_channel-2">start_client_channel/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#stop_client_channel-1">stop_client_channel/1</a></td><td></td></tr>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#create_stream-4">create_stream/4</a></td><td>Create a new stream.</td></tr>
+<tr><td valign="top"><a href="#create_subscription-3">create_subscription/3</a></td><td>Create a new subscription with 600 seconds ack timeout, 10000 max unacked records.</td></tr>
+<tr><td valign="top"><a href="#create_subscription-5">create_subscription/5</a></td><td>Create a new Subscription.</td></tr>
+<tr><td valign="top"><a href="#delete_stream-2">delete_stream/2</a></td><td>Delete the specified stream with the name of stream.</td></tr>
+<tr><td valign="top"><a href="#delete_stream-3">delete_stream/3</a></td><td>
+  Delete the specified stream with the name of stream.</td></tr>
+<tr><td valign="top"><a href="#delete_subscription-2">delete_subscription/2</a></td><td>Delete (force) the specified subscription with the name of subscription.</td></tr>
+<tr><td valign="top"><a href="#delete_subscription-3">delete_subscription/3</a></td><td>
+  Delete the specified subscription with the name of subscription.</td></tr>
+<tr><td valign="top"><a href="#list_streams-1">list_streams/1</a></td><td>List all streams.</td></tr>
+<tr><td valign="top"><a href="#list_subscriptions-1">list_subscriptions/1</a></td><td>List all subscriptions.</td></tr>
+<tr><td valign="top"><a href="#start_client_channel-1">start_client_channel/1</a></td><td>Start HStreamDB client channel.</td></tr>
+<tr><td valign="top"><a href="#start_client_channel-2">start_client_channel/2</a></td><td>Start HStreamDB client channel with gRPC options.</td></tr>
+<tr><td valign="top"><a href="#stop_client_channel-1">stop_client_channel/1</a></td><td>Stop HStreamDB client channel.</td></tr>
 <tr><td valign="top"><a href="#with_client_channel-2">with_client_channel/2</a></td><td></td></tr>
 <tr><td valign="top"><a href="#with_client_channel-3">with_client_channel/3</a></td><td></td></tr>
 </table>
@@ -50,97 +50,89 @@
 
 <h3 class="function"><a name="create_stream-4">create_stream/4</a></h3>
 <div class="spec">
-<p><tt>create_stream(Channel::<a href="#type-channel">channel()</a>, StreamName::string(), ReplicationFactor::integer(), BacklogDuration::integer()) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p><tt>create_stream(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>, StreamName::string(), ReplicationFactor::integer(), BacklogDuration::integer()) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>Create a new stream.</p>
 
 <h3 class="function"><a name="create_subscription-3">create_subscription/3</a></h3>
 <div class="spec">
 <p><tt>create_subscription(Channel, SubscriptionId, StreamName) -&gt; any()</tt></p>
 <p> </p>
-</div>
+</div><p>Create a new subscription with 600 seconds ack timeout, 10000 max unacked records.</p>
 
 <h3 class="function"><a name="create_subscription-5">create_subscription/5</a></h3>
 <div class="spec">
-<p><tt>create_subscription(Channel::<a href="#type-channel">channel()</a>, SubscriptionId::string(), StreamName::string(), AckTimeoutSeconds::integer(), MaxUnackedRecords::integer()) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p><tt>create_subscription(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>, SubscriptionId::string(), StreamName::string(), AckTimeoutSeconds::integer(), MaxUnackedRecords::integer()) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>Create a new Subscription.</p>
 
 <h3 class="function"><a name="delete_stream-2">delete_stream/2</a></h3>
 <div class="spec">
-<p><tt>delete_stream(Channel::<a href="#type-channel">channel()</a>, StreamName::string()) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p><tt>delete_stream(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>, StreamName::string()) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>Delete the specified stream with the name of stream.</p>
 
 <h3 class="function"><a name="delete_stream-3">delete_stream/3</a></h3>
 <div class="spec">
-<p><tt>delete_stream(Channel::<a href="#type-channel">channel()</a>, StreamName::string(), Opts::<a href="#type-delete_stream_opts">delete_stream_opts()</a>) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p><tt>delete_stream(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>, StreamName::string(), Opts::<a href="#type-delete_stream_opts">delete_stream_opts()</a>) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>
+  Delete the specified stream with the name of stream.
+  Avaiable options are: <code>#{ignoreNonExist =&gt; bool, force =&gt; bool}</code></p>
 
 <h3 class="function"><a name="delete_subscription-2">delete_subscription/2</a></h3>
 <div class="spec">
-<p><tt>delete_subscription(Channel::<a href="#type-channel">channel()</a>, SubscriptionId::string()) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p><tt>delete_subscription(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>, SubscriptionId::string()) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>Delete (force) the specified subscription with the name of subscription.</p>
 
 <h3 class="function"><a name="delete_subscription-3">delete_subscription/3</a></h3>
 <div class="spec">
-<p><tt>delete_subscription(Channel::<a href="#type-channel">channel()</a>, SubscriptionId::string(), Opts::<a href="#type-delete_subscription_opts">delete_subscription_opts()</a>) -&gt; ok | {error, Reason::term()}</tt><br></p>
+<p><tt>delete_subscription(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>, SubscriptionId::string(), Opts::<a href="#type-delete_subscription_opts">delete_subscription_opts()</a>) -&gt; ok | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>
+  Delete the specified subscription with the name of subscription.
+  Avaiable options are: <code>#{force =&gt; bool}</code></p>
 
 <h3 class="function"><a name="list_streams-1">list_streams/1</a></h3>
 <div class="spec">
-<p><tt>list_streams(Channel::<a href="#type-channel">channel()</a>) -&gt; {ok, Streams::[<a href="http://www.erlang.org/edoc/doc/hstreamdb_erlang/doc/HStreamApi.html#type-stream">'HStreamApi':stream()</a>]} | {error, Reason::term()}</tt><br></p>
+<p><tt>list_streams(Channel::<a href="#type-hstreamdb_channel">hstreamdb_channel()</a>) -&gt; {ok, Streams::[<a href="http://www.erlang.org/edoc/doc/hstreamdb_erlang/doc/HStreamApi.html#type-stream">'HStreamApi':stream()</a>]} | {error, Reason::term()}</tt><br></p>
 <p> </p>
-</div>
+</div><p>List all streams.</p>
 
 <h3 class="function"><a name="list_subscriptions-1">list_subscriptions/1</a></h3>
 <div class="spec">
 <p><tt>list_subscriptions(Channel) -&gt; any()</tt></p>
 <p> </p>
-</div>
-
-<h3 class="function"><a name="server_node_to_host_port-1">server_node_to_host_port/1</a></h3>
-<div class="spec">
-<p><tt>server_node_to_host_port(ServerNode) -&gt; any()</tt></p>
-<p> </p>
-</div>
-
-<h3 class="function"><a name="server_node_to_host_port-2">server_node_to_host_port/2</a></h3>
-<div class="spec">
-<p><tt>server_node_to_host_port(ServerNode, Protocol) -&gt; any()</tt></p>
-<p> </p>
-</div>
+</div><p>List all subscriptions.</p>
 
 <h3 class="function"><a name="start_client_channel-1">start_client_channel/1</a></h3>
 <div class="spec">
-<p><tt>start_client_channel(ServerUrl) -&gt; any()</tt></p>
+<p><tt>start_client_channel(ServerUrl::string()) -&gt; {ok, <a href="#type-hstreamdb_channel">hstreamdb_channel()</a>}</tt><br></p>
 <p> </p>
-</div>
+</div><p>Start HStreamDB client channel.</p>
 
 <h3 class="function"><a name="start_client_channel-2">start_client_channel/2</a></h3>
 <div class="spec">
-<p><tt>start_client_channel(ServerUrl, Opts) -&gt; any()</tt></p>
+<p><tt>start_client_channel(ServerUrl::string(), Opts::<a href="http://www.erlang.org/edoc/doc/grpc/doc/grpc_client_sup.html#type-options">grpc_client_sup:options()</a>) -&gt; {ok, <a href="#type-hstreamdb_channel">hstreamdb_channel()</a>}</tt><br></p>
 <p> </p>
-</div>
+</div><p>Start HStreamDB client channel with gRPC options.</p>
 
 <h3 class="function"><a name="stop_client_channel-1">stop_client_channel/1</a></h3>
 <div class="spec">
-<p><tt>stop_client_channel(Channel) -&gt; any()</tt></p>
+<p><tt>stop_client_channel(Channel::string()) -&gt; ok</tt><br></p>
 <p> </p>
-</div>
+</div><p>Stop HStreamDB client channel.</p>
 
 <h3 class="function"><a name="with_client_channel-2">with_client_channel/2</a></h3>
 <div class="spec">
-<p><tt>with_client_channel(ServerUrl, Fun) -&gt; any()</tt></p>
+<p><tt>with_client_channel(ServerUrl::string(), Fun::function()) -&gt; any()</tt><br></p>
 <p> </p>
 </div>
 
 <h3 class="function"><a name="with_client_channel-3">with_client_channel/3</a></h3>
 <div class="spec">
-<p><tt>with_client_channel(ServerUrl, Opts, Fun) -&gt; any()</tt></p>
+<p><tt>with_client_channel(ServerUrl::string(), Opts::<a href="http://www.erlang.org/edoc/doc/grpc/doc/grpc_client_sup.html#type-options">grpc_client_sup:options()</a>, Fun::function()) -&gt; any()</tt><br></p>
 <p> </p>
 </div>
 <hr>
