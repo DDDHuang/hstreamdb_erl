@@ -16,7 +16,7 @@
 <h2><a name="types">Data Types</a></h2>
 
 <h3 class="typedecl"><a name="type-consumer_fun">consumer_fun()</a></h3>
-<p><tt>consumer_fun() = fun((<a href="#type-responder">responder()</a>, <a href="#type-received_record">received_record()</a>) -&gt; any())</tt></p>
+<p><tt>consumer_fun() = fun((<a href="#type-received_record">received_record()</a>, <a href="#type-responder">responder()</a>) -&gt; any())</tt></p>
 
 
 <h3 class="typedecl"><a name="type-received_record">received_record()</a></h3>
@@ -28,24 +28,16 @@
 
 
 <h3 class="typedecl"><a name="type-responder">responder()</a></h3>
-<p><tt>responder() = {<a href="http://www.erlang.org/edoc/doc/grpc/doc/grpc_client.html#type-grpcstream">grpc_client:grpcstream()</a>, function()}</tt></p>
+<p><tt>responder() = fun(() -&gt; ok)</tt></p>
 
 
 <h2><a name="index">Function Index</a></h2>
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#ack-2">ack/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#get_record-1">get_record/1</a></td><td></td></tr>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_record-1">get_record/1</a></td><td></td></tr>
 <tr><td valign="top"><a href="#get_record_id-1">get_record_id/1</a></td><td></td></tr>
 <tr><td valign="top"><a href="#start-4">start/4</a></td><td></td></tr>
 </table>
 
 <h2><a name="functions">Function Details</a></h2>
-
-<h3 class="function"><a name="ack-2">ack/2</a></h3>
-<div class="spec">
-<p><tt>ack(Responder, AckIds) -&gt; ok</tt>
-<ul class="definitions"><li><tt>Responder = <a href="#type-responder">responder()</a></tt></li><li><tt>AckIds = <a href="#type-record_id">record_id()</a> | [<a href="#type-record_id">record_id()</a>]</tt></li></ul></p>
-<p> </p>
-</div>
 
 <h3 class="function"><a name="get_record-1">get_record/1</a></h3>
 <div class="spec">
